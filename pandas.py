@@ -10,5 +10,5 @@ a=[nn-n for n,nn in zip(new['value'],new['value'][1:]+[0])]
 a.insert(0,0)
 new['CUM- SUM']=a
 s=st.dataframe(new)
-print(s)
+print(s.value)
 
