@@ -12,4 +12,4 @@ a.insert(0,0)
 new['CUM- SUM']=a
 s=st.dataframe(new)
 print(s)
-plt.plot(s['value'])
+
