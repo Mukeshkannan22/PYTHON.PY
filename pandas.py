@@ -11,6 +11,6 @@ a.insert(0,0)
 new['CUM- SUM']=a
 s=st.dataframe(new)
 print(s)
-m=pd.DataFrame(s[['value','Cum-sum']])
+m=st.dataframe(s[['value','Cum-sum']])
 t=st.dataframe(m)
 st.line_chart(t)
