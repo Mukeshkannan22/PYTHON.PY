@@ -10,6 +10,5 @@ a=[nn-n for n,nn in zip(new['value'],new['value'][1:]+[0])]
 a.insert(0,0)
 new['CUM- SUM']=a
 st.dataframe(new)
-
-m=pd.DataFrame(new)
-st.line_chart(new)
+m=new[['value','Cum-sum']]
+st.line_chart(m)
