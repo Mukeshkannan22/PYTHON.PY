@@ -1,6 +1,7 @@
 import pandas as pd
 import streamlit as st
 import numpy as np
+import matplotlib.pyplot as plt
 
 st.title('COVID-19')
 df=pd.read_csv('https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv')
@@ -11,4 +12,4 @@ a.insert(0,0)
 new['CUM- SUM']=a
 s=st.dataframe(new)
 print(s)
-st.line_chart(s)
+plt.plot(s['value'])
