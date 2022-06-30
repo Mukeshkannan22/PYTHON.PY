@@ -9,6 +9,7 @@ new=new_df[new_df['Country/Region']=='India'].sort_values(by=['value'])
 a=[nn-n for n,nn in zip(new['value'],new['value'][1:]+[0])]
 a.insert(0,0)
 new['CUM- SUM']=a
-st.dataframe(new)
-m=new[['value','Cum-sum']]
+s=st.dataframe(new)
+st.dataframe(s)
+s[['value','Cum-sum']]
 st.line_chart(m)
