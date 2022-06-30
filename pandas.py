@@ -11,5 +11,8 @@ a.insert(0,0)
 new['CUM- SUM']=a
 s=st.dataframe(new)
 print(s)
-m=st.dataframe(a)
-st.line_chart(m)
+
+chart_data = pd.DataFrame([s['value'],s['Lat']]
+     columns=['a', 'b'])
+
+st.line_chart(chart_data)
