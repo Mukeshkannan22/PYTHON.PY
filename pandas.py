@@ -12,5 +12,4 @@ new['CUM- SUM']=a
 s=st.dataframe(new)
 print(s)
 m=st.dataframe(a)
-m['DATE']=np.arange(len(a))
-st.line_chart(t)
+st.line_chart(m)
