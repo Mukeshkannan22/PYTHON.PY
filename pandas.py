@@ -4,6 +4,6 @@ df=pd.read_csv('https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master
 new_df = df.melt(id_vars=['Country/Region','Province/State','Lat','Long'])
 new=new_df[new_df['Country/Region']=='India'].sort_values(by=['value'])
 a=[nn-n for n,nn in zip(new['value'],new['value'][1:]+[0])]
-new['CUM- SUM']=a
 a.insert(0,0)
+new['CUM- SUM']=a
 st.dataframe(new)
