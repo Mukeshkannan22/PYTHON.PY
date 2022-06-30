@@ -1,8 +1,7 @@
 import pandas as pd
 import streamlit as st
 import numpy as np
-import matplotlib.pyplot as plt
-
+pip install matplotlip 
 st.title('COVID-19')
 df=pd.read_csv('https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv')
 new_df = df.melt(id_vars=['Country/Region','Province/State','Lat','Long'])
