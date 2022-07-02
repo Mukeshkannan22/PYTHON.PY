@@ -33,11 +33,12 @@ elif choice=='LOGIN':
     username=st.sidebar.text_input('USER NAME')
     password=st.sidebar.text_input('PASSWORD',type='password')
     if st.sidebar.button('LOGIN'):
+        st.balloons()
+        st.snow()
         
         create_table()
         result= login(username,password)
         if result:
-            st.balloons()
             st.success(f'LOGGED IN AS {username}')
             page_value  = st.sidebar.radio('Select Page', ['Cases','Deaths','Recovery'])
             print(page_value)
@@ -66,27 +67,31 @@ elif choice=='LOGIN':
 
                 st.plotly_chart(fig)
                 
-                new=new_df[new_df['Country/Region']=='India'].sort_values(by=['value'])
+                new=new_df[new_df['Country/Region']==selectedCountry].sort_values(by=['value'])
                 a=[nn-n for n,nn in zip(new['value'],new['value'][1:]+[0])]
                 a.insert(0,0)
                 new['Cum-sum']=a
-                daily=pd.DataFrame(new[['value','Cum-sum']])
+                daily=pd.DataFrame(new[['Cum-sum']])
                 fig2=px.line(daily)
                 st.plotly_chart(fig2)
                 st.table(df_selectedCountry)
         else:
             st.warning('Incorrct Password')
+        
                 
 elif choice == 'SIGN-UP':
     st.subheader('CREATE NEW ACCOUNT')
     new_user = st.text_input('User Name ')
     new_password= st.text_input('Enter Password',type='password')
+    dob=st.date_input('Date of Birth')
     
     if st.button('SIGN-IN'):
         create_table()
         user_data(new_user,new_password)
+        st.snow()
         st.success('You Have a successfully created  avalidd Account')
         st.info("Go to Log in Menu to Login")
+        
         
         
                
