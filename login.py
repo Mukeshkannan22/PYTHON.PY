@@ -1,6 +1,3 @@
-from hashlib import new
-from unittest import result
-from debugpy import connect
 import streamlit as st 
 import pandas as pd 
 import plotly.express as px
@@ -17,11 +14,6 @@ def login(username,password):
     c.execute('SELECT * FROM user where username=? and password = ? ',(username,password))
     data=c.fetchall()
     return data 
-def all_users():
-    c.execute('select * from user')
-    data=c.fetchall()
-    return data 
-
 confrimed_covid = 'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv'
 
 confrimed_df = pd.read_csv(confrimed_covid)
@@ -30,7 +22,8 @@ new_df = confrimed_df.melt(id_vars=['Country/Region','Province/State','Lat','Lon
 st.title('GWC - DASHBOARD')
 
 
-st.title("WLECOME")
+st.title("COVID-19 ANALIYSE")
+
 menu=['HOME','LOGIN','SIGN-UP']
 choice=st.sidebar.selectbox('MENU',menu)
 if choice == 'HOME':
@@ -44,8 +37,9 @@ elif choice=='LOGIN':
         create_table()
         result= login(username,password)
         if result:
+            st.balloons()
             st.success(f'LOGGED IN AS {username}')
-            page_value  = st.sidebar.radio('Select Page', ['Demo', 'Cases'])
+            page_value  = st.sidebar.radio('Select Page', ['Cases','Deaths','Recovery'])
             print(page_value)
             temp_val = 0
             def dailyCaseClac(x):
@@ -54,22 +48,7 @@ elif choice=='LOGIN':
                 temp_val = x
                 return int(currentVal)
 
-            # This is the streamlit method explanation
-
-
-            if page_value == 'Demo':
-
-                st.write('Hello World ***Accepts Markdown as well***')
-                st.text('Hello World from Streamlit.text')
-
-                st.title("this is the Title Card")
-                st.header('This is the header text')
-                st.subheader('This is the sub title')
-                st.dataframe(confrimed_df)
-                st.table(confrimed_df[['Country/Region', 'Province/State']])
-
-
-
+           
             if page_value == 'Cases':
                 st.header('Covid Cases')
 
@@ -87,9 +66,16 @@ elif choice=='LOGIN':
 
                 st.plotly_chart(fig)
                 
+                new=new_df[new_df['Country/Region']=='India'].sort_values(by=['value'])
+                a=[nn-n for n,nn in zip(new['value'],new['value'][1:]+[0])]
+                a.insert(0,0)
+                new['Cum-sum']=a
+                daily=pd.DataFrame(new[['value','Cum-sum']])
+                fig2=px.line(daily)
+                st.plotly_chart(fig2)
                 st.table(df_selectedCountry)
-            else:
-                st.warning('Incorrct Password')
+        else:
+            st.warning('Incorrct Password')
                 
 elif choice == 'SIGN-UP':
     st.subheader('CREATE NEW ACCOUNT')
@@ -101,5 +87,6 @@ elif choice == 'SIGN-UP':
         user_data(new_user,new_password)
         st.success('You Have a successfully created  avalidd Account')
         st.info("Go to Log in Menu to Login")
+        
         
                
