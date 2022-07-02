@@ -4,7 +4,7 @@ import plotly.express as px
 import sqlite3 
 connect=sqlite3.connect('data.db')
 c=connect.cursor()
-from datetime import datetime
+import datetime
 
 def create_table():
     c.execute('CREATE TABLE IF NOT EXISTS user(username TEXT , password TEXT)')
@@ -61,9 +61,8 @@ elif choice=='LOGIN':
                 # st.dataframe(new_df[new_df['Country/Region'] == selectedCountry].tail())
 
                 fig = px.line(df_selectedCountry,x = 'variable',y = 'Daily_Case',)
-                now = datetime.now()
-                current_time = now.strftime("%H:%M:%S")
-                st.title(f'{current_time}')
+                today = datetime.date.today()
+                st.write(today)
                 st.plotly_chart(fig)
                 
                 new=new_df[new_df['Country/Region']=='India'].sort_values(by=['value'])
