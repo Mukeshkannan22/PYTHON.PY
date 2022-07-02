@@ -70,15 +70,15 @@ elif choice=='LOGIN':
                 fig2=px.pie(daily)
                 st.plotly_chart(fig2)
                 st.table(df_selectedCountry)
-            if page_value == 'Cases':
+            if page_value == 'Deaths':
                 death_df=pd.read_csv('https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv')
                 death_pvt_df=death_df.melt(id_vars=['Province/State','Country/Region','Lat','Long'],var_name='Date',value_name='RUNNING_TOTAL')
-                new_2=death_pvt_df[death_pvt_df['Country/Region']=='India'].sort_values(by=['RUNNING_TOTAL'])
+                new_2=death_pvt_df[death_pvt_df['Country/Region']==selectedCountry].sort_values(by=['RUNNING_TOTAL'])
                 b=[nn-n for n,nn in zip(new_2['RUNNING_TOTAL'],new_2['RUNNING_TOTAL'][1:]+[0])]
                 b.insert(0,0)
                 new_2['Cum-sum']=b
                 st.table(new_2.tail(1))
-                l=new_2[new_2['Country/Region']=='India']
+                l=new_2[new_2['Country/Region']==selectedCountry]
                 cum=px.line(l['Cum-sum'])
                 runn=px.line(l['RUNNING_TOTAL'])
                 st.plotly_chart(cum)
