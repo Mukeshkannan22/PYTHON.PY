@@ -61,10 +61,9 @@ elif choice=='LOGIN':
                 # st.dataframe(new_df[new_df['Country/Region'] == selectedCountry].tail())
 
                 fig = px.line(df_selectedCountry,x = 'variable',y = 'Daily_Case',)
-                today = datetime.date.today()
                 now = datetime.now()
                 current_time = now.strftime("%H:%M:%S")
-                st.title(f'{today}{current_time}')
+                st.title(f'{current_time}')
                 st.plotly_chart(fig)
                 
                 new=new_df[new_df['Country/Region']=='India'].sort_values(by=['value'])
