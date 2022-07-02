@@ -1,4 +1,5 @@
 from codecs import ignore_errors
+from secrets import choice
 import streamlit as st
 import pandas as pd
 import plotly as px
@@ -19,12 +20,14 @@ def dailyCaseClac(x):
     return int(currentVal)
 
 
+    
 
 
 page_value  = st.sidebar.radio('Select Page', ['Demo', 'Cases'])
 print(page_value)
 
 # This is the streamlit method explanation
+
 
 if page_value == 'Demo':
 
