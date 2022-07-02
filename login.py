@@ -72,7 +72,7 @@ elif choice=='LOGIN':
                 st.table(df_selectedCountry)
             if page_value == 'Cases':
                 death_df=pd.read_csv('https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv')
-                death_pvt_df=df_d.melt(id_vars=['Province/State','Country/Region','Lat','Long'],var_name='Date',value_name='RUNNING_TOTAL')
+                death_pvt_df=death_df.melt(id_vars=['Province/State','Country/Region','Lat','Long'],var_name='Date',value_name='RUNNING_TOTAL')
                 new_2=death_pvt_df[death_pvt_df['Country/Region']=='India'].sort_values(by=['RUNNING_TOTAL'])
                 b=[nn-n for n,nn in zip(new_2['RUNNING_TOTAL'],new_2['RUNNING_TOTAL'][1:]+[0])]
                 b.insert(0,0)
