@@ -4,7 +4,7 @@ import plotly.express as px
 import sqlite3 
 connect=sqlite3.connect('data.db')
 c=connect.cursor()
-import datetime
+from datetime import datetime
 
 def create_table():
     c.execute('CREATE TABLE IF NOT EXISTS user(username TEXT , password TEXT)')
