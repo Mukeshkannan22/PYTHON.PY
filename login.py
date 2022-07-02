@@ -1,14 +1,26 @@
+from hashlib import new
+from unittest import result
 from debugpy import connect
 import streamlit as st 
 import pandas as pd 
 import plotly.express as px
 import sqlite3 
-connect=sqlite3.connect('data.gwc')
+connect=sqlite3.connect('data.db')
 c=connect.cursor()
 
 def create_table():
-    c.execute('CREAT TABLE IF NOT EXISTS user(username TEXT , password TEXT)')
-
+    c.execute('CREATE TABLE IF NOT EXISTS user(username TEXT , password TEXT)')
+def user_data(username,password):
+    c.execute('INSERT INTO user(username, password) values(?,?)',(username,password))
+    connect.commit()
+def login(username,password):
+    c.execute('SELECT * FROM user where username=? and password = ? ',(username,password))
+    data=c.fetchall()
+    return data 
+def all_users():
+    c.execute('select * from user')
+    data=c.fetchall()
+    return data 
 
 confrimed_covid = 'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv'
 
@@ -28,7 +40,10 @@ elif choice=='LOGIN':
     username=st.sidebar.text_input('USER NAME')
     password=st.sidebar.text_input('PASSWORD',type='password')
     if st.sidebar.button('LOGIN'):
-        if password == '12345':
+        
+        create_table()
+        result= login(username,password)
+        if result:
             st.success(f'LOGGED IN AS {username}')
             page_value  = st.sidebar.radio('Select Page', ['Demo', 'Cases'])
             print(page_value)
@@ -82,6 +97,8 @@ elif choice == 'SIGN-UP':
     new_password= st.text_input('Enter Password',type='password')
     
     if st.button('SIGN-IN'):
+        create_table()
+        user_data(new_user,new_password)
         st.success('You Have a successfully created  avalidd Account')
         st.info("Go to Log in Menu to Login")
         
