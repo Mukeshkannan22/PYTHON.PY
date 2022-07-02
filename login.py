@@ -1,6 +1,14 @@
+from debugpy import connect
 import streamlit as st 
 import pandas as pd 
 import plotly.express as px
+import sqlite3 
+connect=sqlite3.connect('data.gwc')
+c=connect.cursor()
+
+def create_table():
+    c.execute('CREAT TABLE IF NOT EXISTS user(username TEXT , password TEXT)')
+
 
 confrimed_covid = 'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv'
 
@@ -76,4 +84,5 @@ elif choice == 'SIGN-UP':
     if st.button('SIGN-IN'):
         st.success('You Have a successfully created  avalidd Account')
         st.info("Go to Log in Menu to Login")
+        
                
