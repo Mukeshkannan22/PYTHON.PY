@@ -4,6 +4,7 @@ import plotly.express as px
 import sqlite3 
 connect=sqlite3.connect('data.db')
 c=connect.cursor()
+import datetime
 
 def create_table():
     c.execute('CREATE TABLE IF NOT EXISTS user(username TEXT , password TEXT)')
@@ -32,24 +33,20 @@ elif choice=='LOGIN':
     st.subheader('LOGIN')
     username=st.sidebar.text_input('USER NAME')
     password=st.sidebar.text_input('PASSWORD',type='password')
-    if st.sidebar.button('LOGIN'):
-        st.balloons()
-        st.snow()
+    if st.sidebar.checkbox('LOGIN'):
         
         create_table()
         result= login(username,password)
         if result:
             st.success(f'LOGGED IN AS {username}')
-            page_value  = st.sidebar.radio('Select Page', ['Cases','Deaths','Recovery'])
-            print(page_value)
             temp_val = 0
             def dailyCaseClac(x):
                 global temp_val
                 currentVal = x - temp_val
                 temp_val = x
                 return int(currentVal)
-
-           
+            page_value  = st.sidebar.radio('Select Page', ['Cases','Deaths','Recovery'])
+            print(page_value)
             if page_value == 'Cases':
                 st.header('Covid Cases')
 
@@ -64,34 +61,29 @@ elif choice=='LOGIN':
                 # st.dataframe(new_df[new_df['Country/Region'] == selectedCountry].tail())
 
                 fig = px.line(df_selectedCountry,x = 'variable',y = 'Daily_Case',)
-
+                today = datetime.date.today()
+                st.title(today)
                 st.plotly_chart(fig)
                 
-                new=new_df[new_df['Country/Region']==selectedCountry].sort_values(by=['value'])
+                new=new_df[new_df['Country/Region']=='India'].sort_values(by=['value'])
                 a=[nn-n for n,nn in zip(new['value'],new['value'][1:]+[0])]
                 a.insert(0,0)
                 new['Cum-sum']=a
-                daily=pd.DataFrame(new[['Cum-sum']])
-                fig2=px.line(daily)
+                daily=pd.DataFrame(new[['value','Cum-sum']])
+                fig2=px.pie(daily)
                 st.plotly_chart(fig2)
                 st.table(df_selectedCountry)
         else:
             st.warning('Incorrct Password')
-        
                 
 elif choice == 'SIGN-UP':
     st.subheader('CREATE NEW ACCOUNT')
     new_user = st.text_input('User Name ')
     new_password= st.text_input('Enter Password',type='password')
-    dob=st.date_input('Date of Birth')
     
     if st.button('SIGN-IN'):
         create_table()
         user_data(new_user,new_password)
-        st.snow()
         st.success('You Have a successfully created  avalidd Account')
         st.info("Go to Log in Menu to Login")
         
-        
-        
-               
