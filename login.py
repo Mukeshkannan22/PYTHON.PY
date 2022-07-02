@@ -37,6 +37,7 @@ elif choice=='LOGIN':
         create_table()
         result= login(username,password)
         if result:
+            st.snow()
             st.success(f'LOGGED IN AS {username}')
             temp_val = 0
             def dailyCaseClac(x):
@@ -87,6 +88,7 @@ elif choice == 'SIGN-UP':
     st.subheader('CREATE NEW ACCOUNT')
     new_user = st.text_input('User Name ')
     new_password= st.text_input('Enter Password',type='password')
+    st.balloons()
     
     if st.button('SIGN-IN'):
         create_table()
