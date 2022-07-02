@@ -21,7 +21,8 @@ confrimed_df = pd.read_csv(confrimed_covid)
 
 new_df = confrimed_df.melt(id_vars=['Country/Region','Province/State','Lat','Long'])
 image=st.image('https://media-exp1.licdn.com/dms/image/C560BAQE6FPEz390mzA/company-logo_200_200/0/1645521378225?e=2147483647&v=beta&t=0Fco09XDTCU3sEQdH03z7iiK4xLQO-Ybm8Vmyn1tbEY',width=50)
-st.title(f'{image}GWC - DASHBOARD')
+im=list(image)
+st.title(f'{im[0]}GWC - DASHBOARD') 
 st.title("COVID-19 ANALIYSE")
 
 menu=['HOME','LOGIN','SIGN-UP']
