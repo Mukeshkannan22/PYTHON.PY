@@ -103,7 +103,7 @@ elif choice == 'SIGN-UP':
     new_user = st.text_input('User Name ')
     new_password= st.text_input('Enter Password',type='password')
     dob=st.date_input('Date of Birth')
-    if st.checkbox('T&C Apply'):
+    if st.checkbox('T&C Apply') and st.button('SIGN-IN'):
         def user(new_password):
             sp="$#@"
             ret=True
@@ -127,10 +127,12 @@ elif choice == 'SIGN-UP':
                 ret=False
             if ret:
                 return ret
+            
         if user(new_password):
-            if st.button('SIGN-IN'):
-                create_table()
-                user_data(new_user,new_password,dob)
-                st.success('You Have a successfully created  avalidd Account')
-                st.info("Go to Log in Menu to Login")
-        
+            create_table()
+            user_data(new_user,new_password,dob)
+            st.success('You Have a successfully created  avalidd Account')
+            st.info("Go to Log in Menu to Login")
+            st.balloons()
+    else:
+        st.warning('Click The Check Box')        
