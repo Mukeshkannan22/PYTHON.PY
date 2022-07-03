@@ -10,7 +10,7 @@ import datetime
 def create_table():
     c.execute('CREATE TABLE IF NOT EXISTS user(username TEXT , password TEXT,dob date)')
 def user_data(username,password,dob):
-    c.execute('INSERT INTO user(username, password) values(?,?)',(username,password,dob))
+    c.execute('INSERT INTO user(username, password) values(?,?,?)',(username,password,dob))
     connect.commit()
 def login(username,password):
     c.execute('SELECT * FROM user where username=? and password = ? ',(username,password))
