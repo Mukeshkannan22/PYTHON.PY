@@ -1,4 +1,5 @@
 import streamlit as st 
+import time
 import pandas as pd 
 import plotly.express as px
 import sqlite3 
@@ -20,12 +21,11 @@ confrimed_covid = 'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/mas
 confrimed_df = pd.read_csv(confrimed_covid)
 
 new_df = confrimed_df.melt(id_vars=['Country/Region','Province/State','Lat','Long'])
-col1, col2 = st.columns(2)
+col1,col2= st.columns(2)
 with col1:
-    st.subheader('                      GWC-DASHBOARDS')
-with col2:
     st.image('https://media-exp1.licdn.com/dms/image/C560BAQE6FPEz390mzA/company-logo_200_200/0/1645521378225?e=2147483647&v=beta&t=0Fco09XDTCU3sEQdH03z7iiK4xLQO-Ybm8Vmyn1tbEY',width=100,caption='Know Your Story')
-    
+with col2:
+    st.write('')
 st.image('https://www.usda.gov/sites/default/files/covid-header-2.png')
 st.title("COVID-19 ANALYSE")
 st.write('A COVIDSafe Plan is a list of health and safety actions. It is an important part of the occupational health and safety obligations of every workplace and is required under the Victorian Government’s pandemic orders.Every Victorian business or organisation with on-site operations must keep a COVIDSafe Plan at each workplace. They must provide it to an Authorised Officer upon request and comply with any direction given by an authorised officer or WorkSafe inspector to modify the COVIDSafe plan. The plan must set out how the workplace will keep workers, customers and other attendees safe from COVID-19. It also helps to prepare for a case of COVID-19 in the workplace.All workplaces should regularly review and update their COVIDSafe Plan to ensure it reflects the current COVIDSafe settings. A COVIDSafe Plan template has been developed to assist workplaces. However, it is not mandatory to use this template.')
@@ -86,9 +86,15 @@ elif choice=='LOGIN':
                 today_deaths=list(new_2['Cum-sum'])
                 st.header(f'Coronavirus LIVE Updates: {selectedCountry2} Records {today_deaths[-1]} New COVID-19 Cases In Last 24 Hours')
                 st.plotly_chart(cum)
+                total_deaths=list(new_2['RUNNING_TOTAL'])
+                today_2 = datetime.date.today()
+                
+                curr_time = time.strftime("%H:%M:%S", time.localtime())
+ 
+                st.write(f'In {selectedCountry2}, from {today_2} to {curr_time} CEST,cases of COVID-19 with {total_deaths[-1]} deaths, reported to WHO.')
                 st.plotly_chart(runn)
-            #if page_value = 'Recovery':
-             #   pass
+            if page_value == 'Recovery':
+                st.spinner(text="In Working progress...")
                     
         else:
             st.warning('Incorrct Password')
