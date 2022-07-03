@@ -107,22 +107,22 @@ elif choice == 'SIGN-UP':
         def user(new_password):
             sp="$#@"
             ret=True
-            if not any(i in sp for i in password):
+            if not any(i in sp for i in new_password):
                 st.warning("At least 1 character form[$#@]")
                 ret=False
-            if not any(i.isupper() for i in password ):
+            if not any(i.isupper() for i in new_password ):
                 st.warning("At least 1 letter between[A-Z]")
                 ret=False
-            if not any(i.islower() for i in password):
+            if not any(i.islower() for i in new_password):
                 st.warning("At least 1 letter between[a-z]")
                 ret=False
-            if not any(i.isdigit() for i in password):
+            if not any(i.isdigit() for i in new_password):
                 st.warning("At least 1 number between [0-9]")
                 ret=False
-            if len(password)<6:
+            if len(new_password)<6:
                 st.warning("Minimum length of transaction password :6")
                 ret=False
-            if len(password)>12:
+            if len(new_password)>12:
                 st.warning("Maximum length of transaction password :12")
                 ret=False
             if ret:
