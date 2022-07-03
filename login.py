@@ -22,13 +22,14 @@ confrimed_df = pd.read_csv(confrimed_covid)
 new_df = confrimed_df.melt(id_vars=['Country/Region','Province/State','Lat','Long'])
 col1, col2 = st.columns(2)
 with col1:
-    st.subheader('GWC-DASHBOARDS')
+    st.subheader('                      GWC-DASHBOARDS')
 with col2:
-    st.image('https://www.gwcteq.com/images/logo-svg.svg',width=100,caption='Know Your Story')
+    st.image('https://media-exp1.licdn.com/dms/image/C560BAQE6FPEz390mzA/company-logo_200_200/0/1645521378225?e=2147483647&v=beta&t=0Fco09XDTCU3sEQdH03z7iiK4xLQO-Ybm8Vmyn1tbEY',width=100,caption='Know Your Story')
     
 st.image('https://www.usda.gov/sites/default/files/covid-header-2.png')
-st.title("COVID-19 ANALIYSE")
-st.write('Currently there is limited knowledge on medical comorbidities and COVID-19; we conducted a systematic review and meta-analysis to evaluate the impact of various morbidities on serious events in COVID 19.')
+st.title("COVID-19 ANALYSE")
+st.write('A COVIDSafe Plan is a list of health and safety actions. It is an important part of the occupational health and safety obligations of every workplace and is required under the Victorian Government’s pandemic orders.Every Victorian business or organisation with on-site operations must keep a COVIDSafe Plan at each workplace. They must provide it to an Authorised Officer upon request and comply with any direction given by an authorised officer or WorkSafe inspector to modify the COVIDSafe plan. The plan must set out how the workplace will keep workers, customers and other attendees safe from COVID-19. It also helps to prepare for a case of COVID-19 in the workplace.All workplaces should regularly review and update their COVIDSafe Plan to ensure it reflects the current COVIDSafe settings. A COVIDSafe Plan template has been developed to assist workplaces. However, it is not mandatory to use this template.')
+
 menu=['HOME','LOGIN','SIGN-UP']
 choice=st.sidebar.selectbox('MENU',menu)
 if choice == 'HOME':
