@@ -8,9 +8,9 @@ c=connect.cursor()
 import datetime
 
 def create_table():
-    c.execute('CREATE TABLE IF NOT EXISTS user(username TEXT , password TEXT)')
-def user_data(username,password):
-    c.execute('INSERT INTO user(username, password) values(?,?)',(username,password))
+    c.execute('CREATE TABLE IF NOT EXISTS user(username TEXT , password TEXT,dob date)')
+def user_data(username,password,dob):
+    c.execute('INSERT INTO user(username, password) values(?,?)',(username,password,dob))
     connect.commit()
 def login(username,password):
     c.execute('SELECT * FROM user where username=? and password = ? ',(username,password))
@@ -102,11 +102,13 @@ elif choice == 'SIGN-UP':
     st.subheader('CREATE NEW ACCOUNT')
     new_user = st.text_input('User Name ')
     new_password= st.text_input('Enter Password',type='password')
+    dob=st.date_input('Date of Birth')
+    st.checkbox('T&C Apply')
     st.balloons()
     
     if st.button('SIGN-IN'):
         create_table()
-        user_data(new_user,new_password)
+        user_data(new_user,new_password,dob)
         st.success('You Have a successfully created  avalidd Account')
         st.info("Go to Log in Menu to Login")
         
