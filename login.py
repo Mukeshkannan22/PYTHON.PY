@@ -8,7 +8,7 @@ c=connect.cursor()
 import datetime
 
 def create_table():
-    c.execute('CREATE TABLE IF NOT EXISTS user(username TEXT , password TEXT,dob date)')
+    c.execute('CREATE TABLE IF NOT EXISTS user(username TEXT , password TEXT,dob DATE)')
 def user_data(username,password,dob):
     c.execute('INSERT INTO user(username, password,dob) values(?,?,?)',(username,password,dob))
     connect.commit()
