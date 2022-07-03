@@ -106,35 +106,37 @@ elif choice == 'SIGN-UP':
     dob=st.date_input('Date of Birth')
     check=st.checkbox('T&C Apply')
     if st.button('Sign-up'):
-        def user(new_password):
-            sp="$#@"
-            ret=True
-            if not any(i in sp for i in new_password):
-                st.warning("At least 1 character form[$#@]")
-                ret=False
-            if not any(i.isupper() for i in new_password ):
-                st.warning("At least 1 letter between[A-Z]")
-                ret=False
-            if not any(i.islower() for i in new_password):
-                st.warning("At least 1 letter between[a-z]")
-                ret=False
-            if not any(i.isdigit() for i in new_password):
-                st.warning("At least 1 number between [0-9]")
-                ret=False
-            if len(new_password)<6:
-                st.warning("Minimum length of transaction password :6")
-                ret=False
-            if len(new_password)>12:
-                st.warning("Maximum length of transaction password :12")
-                ret=False
-            if ret:
-                return ret
-            
+        if check:
+            def user(new_password):
+                sp="$#@"
+                ret=True
+                if not any(i in sp for i in new_password):
+                    st.warning("At least 1 character form[$#@]")
+                    ret=False
+                if not any(i.isupper() for i in new_password ):
+                    st.warning("At least 1 letter between[A-Z]")
+                    ret=False
+                if not any(i.islower() for i in new_password):
+                    st.warning("At least 1 letter between[a-z]")
+                    ret=False
+                if not any(i.isdigit() for i in new_password):
+                    st.warning("At least 1 number between [0-9]")
+                    ret=False
+                if len(new_password)<6:
+                    st.warning("Minimum length of transaction password :6")
+                    ret=False
+                if len(new_password)>12:
+                    st.warning("Maximum length of transaction password :12")
+                    ret=False
+                if ret:
+                    return ret
+        else:
+            st.warning('Click The Check Box')        
+                
         if user(new_password):
             create_table()
             user_data(new_user,new_password)
             st.success('You Have a successfully created  avalidd Account')
             st.info("Go to Log in Menu to Login")
             st.balloons()
-    else:
-        st.warning('Click The Check Box')        
+    
