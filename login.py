@@ -104,11 +104,33 @@ elif choice == 'SIGN-UP':
     new_password= st.text_input('Enter Password',type='password')
     dob=st.date_input('Date of Birth')
     if st.checkbox('T&C Apply'):
-        
-        if st.button('SIGN-IN'):
-            create_table()
-            user_data(new_user,new_password,dob)
-            st.success('You Have a successfully created  avalidd Account')
-            st.info("Go to Log in Menu to Login")
-            st.balloons()
+        def user(new_password):
+            sp="$#@"
+            ret=True
+            if not any(i in sp for i in password):
+                st.text("At least 1 character form[$#@]")
+                ret=False
+            if not any(i.isupper() for i in password ):
+                st.text("At least 1 letter between[A-Z]")
+                ret=False
+            if not any(i.islower() for i in password):
+                st.text("At least 1 letter between[a-z]")
+                ret=False
+            if not any(i.isdigit() for i in password):
+                st.text("At least 1 number between [0-9]")
+                ret=False
+            if len(password)<6:
+                print("Minimum length of transaction password :6")
+                ret=False
+            if len(password)>12:
+                print("Maximum length of transaction password :12")
+                ret=False
+            if ret:
+                return ret
+        if user(new_password):
+            if st.button('SIGN-IN'):
+                create_table()
+                user_data(new_user,new_password,dob)
+                st.success('You Have a successfully created  avalidd Account')
+                st.info("Go to Log in Menu to Login")
         
