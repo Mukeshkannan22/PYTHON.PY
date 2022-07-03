@@ -94,8 +94,7 @@ elif choice=='LOGIN':
                 st.write(f'In {selectedCountry2}, from {today_2} to {curr_time} CEST,cases of COVID-19 with {total_deaths[-1]} deaths, reported to WHO.')
                 st.plotly_chart(runn)
             if page_value == 'Recovery':
-                st.spinner(text="In Working progress...")
-                    
+                st.error('🔜 Recovery page is Work in Progress 🚧 ')  
         else:
             st.warning('Incorrct Password')
                 
