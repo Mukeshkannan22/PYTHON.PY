@@ -1,3 +1,4 @@
+from tabnanny import check
 import streamlit as st 
 import time
 import pandas as pd 
@@ -9,8 +10,8 @@ import datetime
 
 def create_table():
     c.execute('CREATE TABLE IF NOT EXISTS user(username TEXT , password TEXT,dob DATE)')
-def user_data(username,password,dob):
-    c.execute('INSERT INTO user(username, password,dob) values(?,?,?)',(username,password,dob))
+def user_data(username,password):
+    c.execute('INSERT INTO user(username, password,dob) values(?,?,?)',(username,password))
     connect.commit()
 def login(username,password):
     c.execute('SELECT * FROM user where username=? and password = ? ',(username,password))
@@ -103,7 +104,8 @@ elif choice == 'SIGN-UP':
     new_user = st.text_input('User Name ')
     new_password= st.text_input('Enter Password',type='password')
     dob=st.date_input('Date of Birth')
-    if st.checkbox('T&C Apply') and st.button('SIGN-IN'):
+    check=st.checkbox('T&C Apply')
+    if st.button('Sign-up'):
         def user(new_password):
             sp="$#@"
             ret=True
@@ -130,7 +132,7 @@ elif choice == 'SIGN-UP':
             
         if user(new_password):
             create_table()
-            user_data(new_user,new_password,dob)
+            user_data(new_user,new_password)
             st.success('You Have a successfully created  avalidd Account')
             st.info("Go to Log in Menu to Login")
             st.balloons()
