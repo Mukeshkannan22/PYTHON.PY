@@ -1,3 +1,4 @@
+from tabnanny import check
 import streamlit as st 
 import time
 import pandas as pd 
@@ -55,7 +56,7 @@ elif choice=='LOGIN':
             print(page_value)
             if page_value == 'Cases':
                 st.header('Covid Cases')
-                st.image('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsvyCaSItjzfs38GnlEjEiuNgEW0bNQOi3KA&usqp=CAU'width=500)
+                st.image('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsvyCaSItjzfs38GnlEjEiuNgEW0bNQOi3KA&usqp=CAU',width=500)
                 country_list = list(new_df['Country/Region'].unique())
                 selectedCountry  = st.sidebar.selectbox('Select Country', country_list)
 
