@@ -22,11 +22,13 @@ confrimed_df = pd.read_csv(confrimed_covid)
 new_df = confrimed_df.melt(id_vars=['Country/Region','Province/State','Lat','Long'])
 col1, col2 = st.columns(2)
 with col1:
-    st.image("https://media-exp1.licdn.com/dms/image/C560BAQE6FPEz390mzA/company-logo_200_200/0/1645521378225?e=2147483647&v=beta&t=0Fco09XDTCU3sEQdH03z7iiK4xLQO-Ybm8Vmyn1tbEY",width=50,caption='Know Your Story')
-with col2:
     st.subheader('GWC-DASHBOARDS')
+with col2:
+    st.image('https://www.gwcteq.com/images/logo-svg.svg',width=100,caption='Know Your Story')
+    
+st.image('https://www.usda.gov/sites/default/files/covid-header-2.png')
 st.title("COVID-19 ANALIYSE")
-
+st.write('Currently there is limited knowledge on medical comorbidities and COVID-19; we conducted a systematic review and meta-analysis to evaluate the impact of various morbidities on serious events in COVID 19.')
 menu=['HOME','LOGIN','SIGN-UP']
 choice=st.sidebar.selectbox('MENU',menu)
 if choice == 'HOME':
