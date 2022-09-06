@@ -72,7 +72,7 @@ choice=st.sidebar.selectbox('MENU',menu)
 if choice == 'HOME':
     st.subheader('HOME')
 elif choice=='LOGIN':
-    st.subheader('LOGIN')
+    st.sidebar.subheader('LOGIN')
     username=st.sidebar.text_input('USER NAME')
     password=st.sidebar.text_input('PASSWORD',type='password')
     if st.sidebar.checkbox('LOGIN'):
