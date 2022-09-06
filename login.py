@@ -100,7 +100,7 @@ elif choice=='LOGIN':
 
                 new_df['Daily_Case'] = new_df['Daily_Case'].fillna(0).astype(int)
                 df_selectedCountry = new_df[new_df['Country/Region'] == selectedCountry]
-                fig = px.line(df_selectedCountry,x = 'variable',y = 'Daily_Case',)
+                fig = px.area(df_selectedCountry,x = 'variable',y = 'Daily_Case',)
                 today = datetime.date.today()
                 st.title(today)
                 today_case=list(df_selectedCountry['Daily_Case'])
@@ -148,22 +148,22 @@ elif choice == 'SIGN-UP':
                 sp="$#@"
                 ret=True
                 if not any(i in sp for i in new_password):
-                    st.warning("At least 1 character form[$#@]")
+                    st.sidebar.warning("At least 1 character form[$#@]")
                     ret=False
                 if not any(i.isupper() for i in new_password ):
-                    st.warning("At least 1 letter between[A-Z]")
+                    st.sidebar.warning("At least 1 letter between[A-Z]")
                     ret=False
                 if not any(i.islower() for i in new_password):
-                    st.warning("At least 1 letter between[a-z]")
+                    st.sidebar.warning("At least 1 letter between[a-z]")
                     ret=False
                 if not any(i.isdigit() for i in new_password):
-                    st.warning("At least 1 number between [0-9]")
+                    st.sidebar.warning("At least 1 number between [0-9]")
                     ret=False
                 if len(new_password)<6:
-                    st.warning("Minimum length of transaction password :6")
+                    st.sidebar.warning("Minimum length of transaction password :6")
                     ret=False
                 if len(new_password)>12:
-                    st.warning("Maximum length of transaction password :12")
+                    st.sidebar.warning("Maximum length of transaction password :12")
                     ret=False
                 if ret:
                     return ret
