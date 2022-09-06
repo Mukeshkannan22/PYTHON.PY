@@ -101,6 +101,9 @@ elif choice=='LOGIN':
                 new_df['Daily_Case'] = new_df['Daily_Case'].fillna(0).astype(int)
                 df_selectedCountry = new_df[new_df['Country/Region'] == selectedCountry]
                 fig = px.area(df_selectedCountry,x = 'variable',y = 'Daily_Case',)
+                fig.update_traces(line_color='#39bbf7')
+                fig.update_layout(xaxis=dict(showgrid=False),yaxis=dict(showgrid=False))
+                fig.update_layout({'plot_bgcolor':'rgba(0,0,0,0)','paper_bgcolor':'rgba(0,0,0,0)'})
                 today = datetime.date.today()
                 st.title(today)
                 today_case=list(df_selectedCountry['Daily_Case'])
