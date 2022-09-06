@@ -25,7 +25,7 @@ confrimed_df = pd.read_csv(confrimed_covid)
 new_df = confrimed_df.melt(id_vars=['Country/Region','Province/State','Lat','Long'])
 col1,col2= st.columns(2)
 with col1:
-    st.image('https://www.imperial.ac.uk/ImageCropToolT4/imageTool/uploaded-images/newseventsimage_1585324917059_mainnews2012_x1.jpg',width=150,caption='Know Your Story')
+    st.image('https://www.imperial.ac.uk/ImageCropToolT4/imageTool/uploaded-images/newseventsimage_1585324917059_mainnews2012_x1.jpg',width=150,caption='')
 with col2:
     st.write('')
 st.image('https://www.usda.gov/sites/default/files/covid-header-2.png')
