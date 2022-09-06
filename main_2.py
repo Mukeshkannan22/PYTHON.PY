@@ -60,9 +60,9 @@ vizElement.parentNode.insertBefore(scriptElement, vizElement);
 
 menu=['TABLEAU PERVIVEW YEARS REPORT','Cases','Deaths','Recovery']
 choice=st.sidebar.selectbox('MENU',menu)     
-  page_value  = st.sidebar.radio('Select Page', ['Cases','Deaths','Recovery'])
-  print(page_value)
- if choice == 'Cases':
+page_value  = st.sidebar.radio('Select Page', ['Cases','Deaths','Recovery'])
+print(page_value)
+if choice == 'Cases':
     st.header('Covid Cases')
     st.image('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsvyCaSItjzfs38GnlEjEiuNgEW0bNQOi3KA&usqp=CAU',width=500)
     country_list = list(new_df['Country/Region'].unique())
